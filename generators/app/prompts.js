@@ -41,6 +41,10 @@ module.exports = [
         value: 'sass'
       },
       {
+        name: 'SCSS + PostCSS',
+        value: 'scss'
+      },
+      {
         name: 'PostCSS (with SugarSS and Stylelint)',
         value: 'postcss'
       }

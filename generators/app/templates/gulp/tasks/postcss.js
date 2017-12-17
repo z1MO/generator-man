@@ -40,7 +40,7 @@ gulp.task('sss', function() {
     return gulp
         .src(config.src.sass + '/[^_]*.sss')
         .pipe(sourcemaps.init())
-        .pipe(postcss(processors,{ parser: function (source,opts) {          
+        .pipe(postcss(processors,{ parser: function (source,opts) {
             source = String(source).replace(/(^([ \t]|)+)[+][\w.\-\_]*($|[ \t]+|[(]([^)]|)+[)]([ \t]+|))$/gm,function(match){
               return match.replace(/[()]/g,' ').replace(/(^([ \t]|)+)[+]/g,'$1@mixin ');
             })

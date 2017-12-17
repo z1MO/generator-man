@@ -32,11 +32,11 @@ module.exports = function () {
   // gulp configs
   this.copy('gulp/config.js');
   this.bulkDirectory('gulp/util', 'gulp/util');
-  
+
   // common tasks
   this.template('gulp/tasks/default.js');
   this.template('gulp/tasks/build.js', props);
-  
+
   this.template('gulp/tasks/watch.js', props);
   this.template('gulp/tasks/copy.js', props);
   this.copy('gulp/tasks/clean.js');
@@ -59,6 +59,7 @@ module.exports = function () {
 
   switch (props.css) {
     case 'sass':
+    case 'scss':
       this.copy('gulp/tasks/sass.js');
       break;
     case 'postcss':
@@ -89,6 +90,7 @@ module.exports = function () {
 
     switch (props.css) {
       case 'sass':
+      case 'scss':
         this.bulkCopy('gulp/tasks/iconfont/_iconfont.scss','gulp/tasks/iconfont/_iconfont.scss');
         break;
       case 'postcss':
@@ -103,6 +105,7 @@ module.exports = function () {
 
     switch (props.css) {
       case 'sass':
+      case 'scss':
         this.bulkCopy('gulp/tasks/sprite-svg/_sprite-svg.scss','gulp/tasks/sprite-svg/_sprite-svg.scss');
         break;
       case 'postcss':
@@ -119,6 +122,9 @@ module.exports = function () {
       case 'sass':
         this.template('gulp/tasks/sprite-png/sprite.template.mustache',props);
         break;
+      case 'scss':
+        this.template('gulp/tasks/sprite-png/sprite.scss.handlebars',props);
+        break;
       case 'postcss':
         this.template('gulp/tasks/sprite-png/sprite.sss.template.mustache',props);
         break;
@@ -127,7 +133,7 @@ module.exports = function () {
 
 
   this.template('src/index.yaml', props);
-  
+
   // copy directories
   if (props.bundler === 'webpack') {
     this.copy('src/js/app-webpack.js', 'src/js/app.js');
@@ -147,17 +153,17 @@ module.exports = function () {
   }
   this.copy('babelrc', '.babelrc');
 
-  if (props.css === 'sass') {
-    this.directory('src/sass', 'src/sass');
-  } else{
-    this.directory('src/postcss', 'src/sass');
+  switch (props.css) {
+    case 'sass':
+      this.directory('src/sass', 'src/sass');
+      break;
+    case 'scss':
+      this.directory('src/scss', 'src/sass');
+      break;
+    case 'postcss':
+      this.directory('src/postcss', 'src/sass');
+      break;
   }
-
-  
-
-
-  
-  
 
   switch (props.templates) {
     case 'nunjucks':

@@ -12,14 +12,14 @@ gulp.task('sprite:png', function() {
     }))
     .pipe(spritesmith({
         imgName: 'sprite.png',
-        cssName: '_sprite-png.s<% if (css === 'sass') { %>a<% } %>ss',
+        cssName: '_sprite-png.<% if (css === 'sass') { %>sass<% } %><% if (css === 'scss') { %>scss<% } %><% if (css === 'postcss') { %>sss<% } %>',
         imgPath: '../img/sprite.png',
         // retinaSrcFilter: config.src.iconsPng + '/*@2x.png',
         // retinaImgName: 'sprite@2x.png',
         // retinaImgPath: '../img/sprite@2x.png',
         padding: 10,
         algorithm: 'binary-tree',
-        cssTemplate: __dirname + '/sprite<% if (css === 'postcss') { %>.sss<% } %>.template.mustache'
+        cssTemplate: __dirname + '/sprite.<% if (css === 'sass') { %>template.mustache<% } %><% if (css === 'scss') { %>scss.handlebars<% } %><% if (css === 'postcss') { %>sss.template.mustache<% } %>'
         // ,
         // cssVarMap: function(sprite) {
         //     sprite.name = 'icon-' + sprite.name;

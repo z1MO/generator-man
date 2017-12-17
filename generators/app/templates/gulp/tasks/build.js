@@ -8,7 +8,7 @@ function build(cb) {
         'iconfont',<% } %><% if (sprites.indexOf('svg') !== -1) { %>
         'sprite:svg',<% } %><% if (sprites.indexOf('png') !== -1) { %>
         'sprite:png',<% } %><% if (svgo) { %>
-        'svgo',<% } %><% if (css === 'sass') { %>
+        'svgo',<% } %><% if (css === 'sass' || css === 'scss') { %>
         'sass',<% } %><% if (css === 'postcss') { %>
         'sss',<% } %><% if (templates === 'swig') { %>
         'swig',<% } %><% if (templates === 'jade') { %>

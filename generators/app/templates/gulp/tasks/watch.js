@@ -1,7 +1,7 @@
 var gulp   = require('gulp');
 var config = require('../config');
 
-gulp.task('watch', 
+gulp.task('watch',
     ['copy:watch',
     <% if (templates === 'swig') { %>
     'swig:watch',<% } %><% if (templates === 'jade') { %>
@@ -14,7 +14,7 @@ gulp.task('watch',
     'browserify:watch',<% } %>
     'list-pages:watch',<% if (bundler === 'webpack') { %>
     'webpack:watch',<% } %><% if (bundler === 'manually') { %>
-    'js:watch',<% } %><% if (css === 'sass') { %>
+    'js:watch',<% } %><% if (css === 'sass' || css === 'scss') { %>
     'sass:watch'<% } %><% if (css === 'postcss') { %>
     'sss:watch'<% } %>
 ]);
